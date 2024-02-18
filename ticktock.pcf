@@ -1,0 +1,31 @@
+# 25 MHz crystal
+set_frequency clk 25
+set_io clk 21
+
+# LEDs 95 -> 99
+set_io led[4] 95
+set_io led[3] 96
+set_io led[2] 97
+set_io led[1] 98
+set_io led[0] 99
+
+# J2 (PMOD)
+#   +----+----+
+# 1 | 78 | 87 | 7
+# 2 | 79 | 88 | 8
+# 3 | 80 | 90 | 9
+# 4 | 81 | 91 | 10
+# 5 | GND| GND| 11
+# 6 |3_3V|3_3V| 12
+#   +----+----+
+
+# PMOD GPS
+# 1, 3DF
+# 2, RXD
+# 3, TXD
+# 4, PPS
+# 5, GND
+# 6, 3.3V
+
+set_io tick 81
+set_io tock 91
