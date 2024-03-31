@@ -1,5 +1,5 @@
-# 25 MHz crystal
-set_frequency clk 25
+# 12 MHz crystal
+set_frequency clk 12
 set_io clk 21
 
 # LEDs 95 -> 99
