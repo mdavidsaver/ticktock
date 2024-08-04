@@ -1,14 +1,24 @@
 `timescale 1us/1ns
 module ticktock(
-  input wire clk, // 12 MHz
+  input wire clk12, // 12 MHz
   output wire [4:0] led,
   output reg tick,
   output wire tock
 );
 
 `ifdef __ICARUS__
+wire locked = 1;
 assign tock = tick;
+wire clk = clk12;
 `else
+wire clk;
+wire locked;
+pll pll(
+  .clock_in(clk12),
+  .clock_out(clk),
+  .locked(locked)
+);
+
 SB_IO #(
   .PIN_TYPE(6'b010100) // registered output
 ) tock_r(
@@ -19,7 +29,7 @@ SB_IO #(
 );
 `endif
 
-localparam LIMIT = 12000000;
+localparam LIMIT = 124500000;
 localparam MAX = LIMIT-1;
 localparam WIDTH = $clog2(MAX);
 
@@ -30,7 +40,7 @@ assign led[4] = cnt > LIMIT/2;
 
 always @(posedge clk) begin
   tick <= 0;
-  if(cnt==MAX) begin
+  if(cnt==MAX || !locked) begin
     cnt <= 0;
     tick<= 1;
   end else begin
