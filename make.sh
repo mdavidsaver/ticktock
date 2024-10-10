@@ -13,7 +13,7 @@ yosys \
  -p "write_json ticktock.json"
 
 nextpnr-ice40 \
- --seed 3 \
+ --seed 1 \
  --hx1k --package tq144 \
  --pcf ticktock.pcf \
  --json ticktock.json \
