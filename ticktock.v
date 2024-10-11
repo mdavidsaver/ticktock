@@ -21,7 +21,7 @@ pll pll(
 );
 `endif
 
-localparam LIMIT = 124500000;
+localparam LIMIT = 124500000+2500;
 localparam MAX = LIMIT-1;
 localparam WIDTH = $clog2(MAX);
 
